@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package calculator;
+
+service Calculator {
+	rpc Mult (CalculatorRequest) returns (CalculatorReply) {}
+	rpc Div  (CalculatorRequest) returns (CalculatorReply) {}
+	rpc Sub  (CalculatorRequest) returns (CalculatorReply) {}
+	rpc Add  (CalculatorRequest) returns (CalculatorReply) {}
+}
+
+message CalculatorRequest {
+	int32 op1 = 1;
+	int32 op2 = 2;
+}
+
+message CalculatorReply {
+	int32 response = 1;
+}

@@ -1,20 +1,32 @@
-import rpyc
+from concurrent import futures
+import grpc
+import calc_pb2_grpc
+import calc_pb2
 from constCS import * #-
-from rpyc.utils.server import ThreadedServer
 
-class Calculator(rpyc.Service):
-	def exposed_sum(self, op1, op2):
-		return op1 + op2
+class Calculator(calc_pb2_grpc.CalculatorServicer):
+	def Mult(self, request, context):
+		print(request.op1)
+		return calc_pb2.CalculatorReply(response=0)
 
-	def exposed_mult(self, op1, op2):
-		return op1 * op2
-
-	def exposed_div(self, op1, op2):
-		return op1 / op2
-
-	def exposed_sub(self, op1, op2):
-		return op1 - op2
+	def Div(self, request, context):
+		print(request.op1)
+		return calc_pb2.CalculatorReply(response=0)
+	
+	def Sub(self, request, context):
+		print(request.op1)
+		return calc_pb2.CalculatorReply(response=0)
+	
+	def Add(self, request, context):
+		print(request.op1)
+		return calc_pb2.CalculatorReply(response=0)
+	
 
 if __name__ == "__main__":
-	server = ThreadedServer(Calculator(), port = PORT)
+	server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+	calc_pb2_grpc.add_CalculatorServicer_to_server(
+		Calculator(), server
+	)
+	server.add_insecure_port('[::]:50051')
 	server.start()
+	server.wait_for_termination()
