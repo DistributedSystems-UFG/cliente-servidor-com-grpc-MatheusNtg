@@ -36,6 +36,5 @@ with grpc.insecure_channel(f'{HOST}:{PORT}') as channel:
 	else:
 		print('Invalid operation')
 		exit()
-	print(result)
 
-print(f'Answer: {result}')
+print(result)
