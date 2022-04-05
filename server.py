@@ -6,20 +6,28 @@ from constCS import * #-
 
 class Calculator(calc_pb2_grpc.CalculatorServicer):
 	def Mult(self, request, context):
-		print(request.op1)
-		return calc_pb2.CalculatorReply(response=0)
+		op1 = request.op1
+		op2 = request.op2
+		result = op1 * op2
+		return calc_pb2.CalculatorReply(response=result)
 
 	def Div(self, request, context):
-		print(request.op1)
-		return calc_pb2.CalculatorReply(response=0)
+		op1 = request.op1
+		op2 = request.op2
+		result = op1 / op2
+		return calc_pb2.CalculatorReply(response=result)
 	
 	def Sub(self, request, context):
-		print(request.op1)
-		return calc_pb2.CalculatorReply(response=0)
+		op1 = request.op1
+		op2 = request.op2
+		result = op1 - op2
+		return calc_pb2.CalculatorReply(response=result)
 	
 	def Add(self, request, context):
-		print(request.op1)
-		return calc_pb2.CalculatorReply(response=0)
+		op1 = request.op1
+		op2 = request.op2
+		result = op1 + op2
+		return calc_pb2.CalculatorReply(response=result)
 	
 
 if __name__ == "__main__":
