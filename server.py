@@ -27,6 +27,6 @@ if __name__ == "__main__":
 	calc_pb2_grpc.add_CalculatorServicer_to_server(
 		Calculator(), server
 	)
-	server.add_insecure_port('[::]:50051')
+	server.add_insecure_port(f'[::]:{PORT}')
 	server.start()
 	server.wait_for_termination()

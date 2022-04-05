@@ -22,7 +22,7 @@ second_operand = int(input("Type the second operand (integers only): "))
 
 result = 0
 
-with grpc.insecure_channel('localhost:50051') as channel:
+with grpc.insecure_channel(f'{HOST}:{PORT}') as channel:
 	stub = calc_pb2_grpc.CalculatorStub(channel)
 	
 	if operation == '+':
